@@ -1,0 +1,25 @@
+{
+  "name": "youdrive",
+  "version": "0.0.1",
+  "description": "A web interface for SFU's personal file space that enables file sharing and manipulation",
+  "main": " ",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "rake test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/calmel05/you.git"
+  },
+  "author": "Junbo Bao, Taylor Costa, Chris Harris, Frank He, Calvin Ma",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/calmel05/you/issues"
+  },
+  "homepage": "https://github.com/calmel05/you#readme",
+  "devDependencies": {
+    "gulp": "^3.9.0"
+  }
+}
