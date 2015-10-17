@@ -1,0 +1,27 @@
+#!/bin/sh
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m'
+CMD="rake test" # Command that runs your tests
+protected_branch='master'
+
+# Check if we actually have commits to push
+commits=`git log @{u}..`
+if [ -z "$commits" ]; then
+    exit 0
+fi
+
+current_branch=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,')
+
+if [[ $current_branch = $protected_branch ]]; then
+    $CMD
+    RESULT=$?
+    if [ $RESULT -ne 0 ]; then 
+        printf "${RED}$CMD failed – deployment stopped${NC}"
+        exit 1
+    else 
+        echo "${GREEN}All tests passed. Beginning deployment${NC}"
+        exit 0
+    fi
+fi
+exit 0
