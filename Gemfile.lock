@@ -160,7 +160,7 @@ DEPENDENCIES
   jquery-rails
   mysql2 (~> 0.3.18)
   net-sftp
-  paperclip
+  paperclip (~> 4.3)
   puma
   rails (= 4.2.4)
   sass-rails (~> 5.0)

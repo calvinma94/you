@@ -25,7 +25,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use paperclip for file uploads
-gem 'paperclip'
+gem 'paperclip', '~> 4.3'
 
 # Use net-sftp
 gem 'net-sftp'
