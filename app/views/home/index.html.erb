@@ -1,1 +1,11 @@
-<h1>Working</h1>
+<h1>Files</h1>
+<h2><%= @directory %></h2>
+<ul>
+<% @file_list.each do |filename, filetype| %>
+  <% if filetype == 'directory' %>
+    <li style="color:red;"><%= link_to "#{filename}", root_path(dir: filename) %></li>
+  <% else %>
+    <li><%= filename %></li>
+  <% end %>
+<% end %>
+</ul>
