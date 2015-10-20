@@ -33,12 +33,26 @@ class UsersController < ApplicationController
       render 'edit'
     end
   end
+
+  def auth
+    @user = User.find(params[:id])
+  end
+
+  def authenticate
+    if @user.update_attributes(user_params)
+      flash[:success] = "Successfully authenticated"
+      redirect_to @user
+    else
+      flash[:failure] = "Could not authenticate"
+      render 'auth'
+    end
+  end
   
   private
 
     def user_params
       params.require(:user).permit(:name, :email, :password,
-                                   :password_confirmation)
+                                   :password_confirmation, :sfu_computingid, :sfu_password)
     end
 
     # 事前过滤器
