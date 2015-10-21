@@ -2,6 +2,6 @@
 ln -s -f ../../hooks/pre-push .git/hooks/pre-push
 
 SECRETKEYBASE=`RAILS_ENV=production rake secret`
-cat >> ../../.bashrc <<EOF
+cat >> ../.bashrc <<EOF
 export SECRET_KEY_BASE=$SECRETKEYBASE
 EOF
