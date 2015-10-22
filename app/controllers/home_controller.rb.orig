@@ -1,6 +1,7 @@
 require 'net/sftp'
 
 class HomeController < ApplicationController
+<<<<<<< HEAD
   def index
     @file_list = {}
 
@@ -22,4 +23,10 @@ class HomeController < ApplicationController
       end
     end
   end
+=======
+    
+    def help
+    end
+    
+>>>>>>> application_copy
 end

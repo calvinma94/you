@@ -1,1 +1,15 @@
-<h1>Working</h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>You</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <% if filetype == 'directory' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+
+    <%= yield %>
+
+  </body>
+</html>
