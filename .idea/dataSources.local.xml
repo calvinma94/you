@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="Rails you: development" uuid="b67fcc01-6b8e-4c2b-af9c-03c47a8f1d28">
+      <user-name>root</user-name>
+      <schema-pattern>you_development.*</schema-pattern>
+      <default-schemas>you_development.*</default-schemas>
+    </data-source>
+    <data-source name="Rails you: test" uuid="efcba3ca-d569-47bd-b537-c046792f6e20">
+      <user-name>root</user-name>
+      <schema-pattern>you_test.*</schema-pattern>
+      <default-schemas>you_test.*</default-schemas>
+    </data-source>
+    <data-source name="Rails you: production" uuid="e0eb8ad3-0afa-4188-8f49-2bd530fdb278">
+      <first-sync>true</first-sync>
+      <user-name>b522c00ad7b944</user-name>
+      <user-password>df96df8fdf97df8adfefdfe4dffcdff1df8ddff3dfe5dfffdff5dfeedfebdffedfebdfe8dfebdff9dfefdff5dffadfebdff9dff9dffddfe5dff8dfeedf8ddff7df8adf8fdf94</user-password>
+    </data-source>
+  </component>
+</project>
