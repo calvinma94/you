@@ -1,0 +1,31 @@
+<div class="page-header"> 
+  <h1 class="text-primary">Listing Files from <%=@account_info['display_name']%>'s Dropbox</h1>
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th class="text-primary">File Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%if(@entry['is_dir'])%>
+        <%@entry['contents'].each do |child|%>
+        <%@cp = child['path']      # child path%>
+        <%@cn = File.basename(@cp)  # child name%>
+        <%if (child['is_dir']) then @cn += '/' end# adds another slash after the path if it's a folder to differentiate between files%>
+        <tr><td class="text-primary"><%=@cn%></td><td>
+        <%if !(child['is_dir']) then%>
+          <%=link_to "download this file", dropbox_download_path(path: @cp), class: 'btn btn-success'%>
+        <%end%>
+        </td></tr>
+    <%end%>
+    <%else%>
+        <tr><td class='text-primary'>File : <%=@entry.inspect%></td></tr>
+    <%end%>
+    
+  </tbody>
+  </table>
+  <%=link_to 'Upload a File', dropbox_main_path,  class: "btn btn-success"%>
+  <%=link_to "back to homepage", root_path, class:"btn btn-success"%>
