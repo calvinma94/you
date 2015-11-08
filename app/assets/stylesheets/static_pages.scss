@@ -1,3 +1,65 @@
 // Place all the styles related to the StaticPages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+div.header{
+    background-color: #b5111b;
+    color: #ffffff;
+    text-align: center;
+    width: 100%;
+    height: 250px;
+    position: relative;
+}
+            
+div.middle{
+    background-image: url("school-tile4.png");
+    height: 300px;
+    position:relative;
+}
+
+div#title{
+    position:absolute;
+    width:100%;
+    bottom: -16px;
+}
+
+div#signup_link{
+    position:absolute;
+    top:15px;
+    margin: 0 auto;
+    width:100%;
+    
+}
+
+.navbar{
+    padding-bottom: 0px;
+    background-color: #b5111b;
+}
+
+.navbar a{
+    color:#ffffff;
+}
+
+.navbar a:hover{
+    color: black;
+}
+
+.btn{
+    color: #b5111b;
+    border: solid #b5111b;
+    background-color: #ffffff;
+    
+}
+
+.btn:hover{
+    color:#ffffff;
+    background-color: #b5111b;
+    border: solid #ffffff 1px;
+}
+
+p{
+    text-align: center;
+}
+
