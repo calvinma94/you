@@ -18,6 +18,13 @@ Rails.application.routes.draw do
   match "/authenticate/:id", to: "users#authenticate", via: [:put], as: :authenticate
   
   resources :users
+  
+  get  "dropbox/main"
+  post "dropbox/upload"
+  get  "dropbox/auth_start"
+  get  "dropbox/auth_finish"
+  get  "dropbox/listfiles"
+  get  "dropbox/download"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
