@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   get  "dropbox/auth_finish"
   get  "dropbox/listfiles"
   get  "dropbox/download"
+  get  "dropbox/dropsession"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
