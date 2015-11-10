@@ -5,7 +5,7 @@
 @import "bootstrap";
 
 div.header{
-    background-color: #b5111b;
+    background-image:url("grid-noise.png");
     color: #ffffff;
     text-align: center;
     width: 100%;
@@ -15,8 +15,16 @@ div.header{
             
 div.middle{
     background-image: url("school-tile4.png");
+    width:100%;
     height: 300px;
     position:relative;
+}
+
+div.middle_auto{
+    background-image: url("school-tile4.png");
+    width:100%;
+    height: 730px;
+    position:relative;  
 }
 
 div#title{
@@ -27,15 +35,39 @@ div#title{
 
 div#signup_link{
     position:absolute;
-    top:15px;
+    top:60px;
     margin: 0 auto;
     width:100%;
     
 }
 
+div.footer{
+    background-image: url("binding_dark.png");
+    text-align: center;
+    font-weight:200;
+    height: 60px;
+    width:100%;
+    margin: 0 auto;
+}
+
+.footer a{
+    color:#ffffff;
+    text-transform:lowercase;
+}
+
+ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+div#copy{
+    color: #b5111b;
+    font-weight: 600;
+}
+
 .navbar{
     padding-bottom: 0px;
-    background-color: #b5111b;
 }
 
 .navbar a{
@@ -44,6 +76,18 @@ div#signup_link{
 
 .navbar a:hover{
     color: black;
+}
+
+.static_container{
+    margin:0 auto;
+    width:420px;
+    position:relative;
+    top:30px;
+    border: solid #b5111b 2px;
+    background-color: #ffffff;
+    border-radius:15px;
+    padding:10px;
+    
 }
 
 .btn{
@@ -56,10 +100,20 @@ div#signup_link{
 .btn:hover{
     color:#ffffff;
     background-color: #b5111b;
-    border: solid #ffffff 1px;
+    border: solid #ffffff;
 }
 
 p{
     text-align: center;
 }
 
+p.left{
+    text-align: left;
+}
+
+p.question{
+    color: #000000;
+    font-weight: 700;
+    text-transform: italic;
+    
+}
