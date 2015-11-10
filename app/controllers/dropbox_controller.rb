@@ -1,9 +1,11 @@
-class DropboxController < ApplicationController
+#include DropboxHelper
+  
 require 'dropbox_sdk'
 require 'securerandom'
 
 APP_KEY = 'zun0mrf9rzhthgl'
 APP_SECRET = 'rcfrfr3q6k8zppt'
+class DropboxController < ApplicationController
 
     def main
         client = get_dropbox_client
@@ -81,9 +83,8 @@ APP_SECRET = 'rcfrfr3q6k8zppt'
 
         begin
             # Upload the POST'd file to Dropbox, keeping the same name
-            @resp = client.put_file(params[:file].original_filename, params[:file].read)
-            #render :text => "Upload successful.  File now at #{resp['path']}"
-            render 'uploadsuccess'
+            resp = client.put_file(params[:file].original_filename, params[:file].read)
+            render :text => "Upload successful.  File now at #{resp['path']}"
         rescue DropboxAuthError => e
             session.delete(:access_token)  # An auth error means the access token is probably bad
             logger.info "Dropbox auth error: #{e}"
@@ -143,5 +144,11 @@ APP_SECRET = 'rcfrfr3q6k8zppt'
       logger.info "Error getting OAuth 2 access token: #{e}"
       render :text => "Error communicating with Dropbox servers."
     end
+    end
+    
+    def dropsession
+        session.delete(:access_token)
+        #reset_session
+        redirect_to root_path and return
     end
 end
