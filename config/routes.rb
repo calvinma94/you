@@ -14,8 +14,11 @@ Rails.application.routes.draw do
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
 
+  get 'files' => 'users#files'
+  patch 'files' => 'users#files'
+
   match "/auth/:id/", to: "users#auth", via: [:get], as: :auth
-  match "/authenticate/:id", to: "users#authenticate", via: [:put], as: :authenticate
+  #match "/authenticate/:id", to: "users#authenticate", via: [:put], as: :authenticate
   
   resources :users
   

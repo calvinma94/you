@@ -1,5 +1,7 @@
+require 'net/sftp'
+
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
+  before_action :logged_in_user, only: [:index, :edit, :update, :files, :destroy]
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
   
@@ -9,6 +11,39 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+    session[:user_id] = params[:id]
+  end
+
+  def files
+    @user = User.find(session[:user_id])
+    @file_list = {}
+
+    if params[:dir].nil?
+      @directory = "./"
+    else
+      @directory = params[:dir]
+    end
+
+    begin
+      Net::SFTP.start('fraser.sfu.ca', @user.sfu_computingid, :password => @user.sfu_password, :non_interactive => true, :timeout => 10) do |sftp|
+        sftp.dir.foreach(@directory) do |entry|
+          if entry.directory?
+            @file_type = 'directory'
+          elsif entry.file?
+            @file_type = 'file'
+          end
+
+          @file_list[entry.name] = @file_type
+        end
+      end
+
+      @user.authenticated = true
+      @user.save
+
+    rescue Net::SSH::Exception
+      @user.authenticated = false
+      redirect_to action: "auth", id: @user.id
+    end
   end
   
   def new
@@ -33,7 +68,7 @@ class UsersController < ApplicationController
   end
   
   def edit
-    # @user = User.find(params[:id])
+    #@user = User.find(params[:id])
   end
   
   def update
@@ -48,22 +83,13 @@ class UsersController < ApplicationController
   def auth
     @user = User.find(params[:id])
   end
-
-  def authenticate
-    if @user.update_attributes(user_params)
-      flash[:success] = "Successfully authenticated"
-      redirect_to @user
-    else
-      flash[:failure] = "Could not authenticate"
-      render 'auth'
-    end
-  end
   
   private
 
     def user_params
       params.require(:user).permit(:name, :email, :password,
-                                   :password_confirmation, :sfu_computingid, :sfu_password)
+                                   :password_confirmation, :sfu_computingid, :sfu_password, 
+                                   :authenticated)
     end
 
     # 事前过滤器
