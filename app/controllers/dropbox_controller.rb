@@ -80,11 +80,11 @@ class DropboxController < ApplicationController
         unless client
             redirect_to(:action => 'auth_start') and return
         end
-
+        @account_info = client.account_info
         begin
             # Upload the POST'd file to Dropbox, keeping the same name
-            resp = client.put_file(params[:file].original_filename, params[:file].read)
-            render :text => "Upload successful.  File now at #{resp['path']}"
+            @resp = client.put_file(params[:file].original_filename, params[:file].read)
+            render 'uploadsuccess'
         rescue DropboxAuthError => e
             session.delete(:access_token)  # An auth error means the access token is probably bad
             logger.info "Dropbox auth error: #{e}"
@@ -147,8 +147,11 @@ class DropboxController < ApplicationController
     end
     
     def dropsession
+        client = get_dropbox_client
+        if client
+            client.disable_access_token
+        end
         session.delete(:access_token)
-        #reset_session
         redirect_to root_path and return
     end
 end
