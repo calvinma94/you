@@ -5,7 +5,7 @@
 @import "bootstrap";
 
 div.header{
-    background-image:url("grid-noise.png");
+    background-image:asset-data-url("grid-noise.png");
     color: #ffffff;
     text-align: center;
     width: 100%;
@@ -14,14 +14,14 @@ div.header{
 }
             
 div.middle{
-    background-image: url("school-tile4.png");
+    background-image:asset-data-url("school-tile4.png");
     width:100%;
     height: 300px;
     position:relative;
 }
 
 div.middle_auto{
-    background-image: url("school-tile4.png");
+    background-image:asset-data-url("school-tile4.png");
     width:100%;
     height: 730px;
     position:relative;  
@@ -42,7 +42,7 @@ div#signup_link{
 }
 
 div.footer{
-    background-image: url("binding_dark.png");
+    background-image:asset-data-url("binding_dark.png");
     text-align: center;
     font-weight:200;
     height: 60px;
