@@ -1,3 +1,6 @@
+<html>
+<body>
+<div class="wrapper_nobackground">
 <% provide(:title, "Edit user") %>
 <h1>Update your profile</h1>
 
@@ -21,14 +24,9 @@
 
       <%= f.submit "Save changes", class: "btn btn-primary" %>
     <% end %>
-  <br>
-    <div class="gravatar_edit">
-      <%= gravatar_for @user %>
-      <a href="http://gravatar.com/emails" target="_blank">change</a>
-    </div>
   </div>
 </div>
-<br>
+</div>
 <div class="footer">
     <ul>
         <li><%= link_to "About", about_path %></li>
@@ -36,3 +34,5 @@
         <li><%= link_to "Contact", contact_path %></li>
     </ul>
 </div>
+</body>
+</html>

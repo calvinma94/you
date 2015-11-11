@@ -1,11 +1,28 @@
-<% provide(:title, @user.name) %>
-<div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.name %>
-      </h1>
-    </section>
-  </aside>
-</div>
+<html>
+
+<body>
+  <div class="wrapper">
+  <%= stylesheet_link_tag "static_pages" %>
+  
+  <% provide(:title, @user.name) %>
+  <div class="box">
+        <h1>
+          <%= image_tag("profile_large.png", :alt => "profile picture") %>
+          <%= @user.name %>
+        </h1>
+        <p>Email: <%= @user.email =%></p>
+        <p><%= link_to "Edit your profile", edit_user_path(current_user) =%></p>
+
+  </div>
+    <div class="push"></div>
+  </div>
+  <div class="footer">
+      <ul>
+          <li><%= link_to "About", about_path %></li>
+          <li><%= link_to "Help", help_path %></li>
+          <li><%= link_to "Contact", contact_path %></li>
+      </ul>
+   </div>
+   </body>
+ </html>
+ 
