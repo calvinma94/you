@@ -1,3 +1,38 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+* {
+margin: 0;
+}
+html, body {
+height: 100%;
+}
+.wrapper {
+min-height: 100%;
+height: auto !important;
+height: 100%;
+margin: 0 auto -4em;
+background-image: url("school-tile4.png");
+}
+.wrapper_nobackground {
+min-height: 100%;
+height: auto !important;
+height: 100%;
+margin: 0 auto -4em;
+}
+.footer, .push {
+height: 4em;
+}
+
+.box{
+    background-color: #ffffff;
+    padding: 10px;
+    border: solid 2px #b5111b;
+    width: 50%;
+    margin: 0 auto;
+    height: auto;
+    border-radius: 15px;
+}
+
+
