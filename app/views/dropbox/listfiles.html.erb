@@ -1,23 +1,23 @@
-<%#@account_info%>
-<%#@entry%>
 <div class="page-header"> 
-  <h1 class="text-primary">Listing Files from <%=@account_info['display_name']%>'s Dropbox</h1>
+  <h1 class="text-primary">Listing Files from <%=@account_info['name_details/familiar_name']%>'s Dropbox</h1>
 </div>
 <table class="table">
   <thead>
     <tr>
       <th class="text-primary">File Name</th>
-      <th colspan="3"></th>
+      <th class="text-primary">Last Modified</th>
+      <th colspan="0"></th>
     </tr>
   </thead>
-
   <tbody>
     <%if(@entry['is_dir'])%>
         <%@entry['contents'].each do |child|%>
         <%@cp = child['path']      # child path%>
         <%@cn = File.basename(@cp)  # child name%>
+        <%time=DateTime.strptime(child['modified'],"%a, %d %b %Y %H:%M:%S %z")%>
         <%if (child['is_dir']) then @cn += '/' end# adds another slash after the path if it's a folder to differentiate between files%>
-        <tr><td class="text-primary"><%=@cn%></td><td>
+        <tr><td class="text-primary"><%=@cn%></td>
+        <td class= "text-primary"><%=time.strftime("%m/%d/%Y %H:%M")%></td><td>
         <%if (child['is_dir']) then%>
           <%=link_to "browse this directory", dropbox_listfiles_path(path: @cp), class: 'btn btn-primary'%>
         <%else%>

@@ -1,5 +1,11 @@
-<h1 class="text-primary">Upload Page</h1>
-<h5 class="text-primary"><%=@account_info['email']%></h5> 
-<br/><%= form_tag({:action => :upload}, :multipart => true) do %><%= file_field_tag 'file' %><%= submit_tag 'Upload' %><% end %>
+<div class="page-header"> 
+  <h1 class="text-primary">Upload Page. For <%=@account_info['name_details/familiar_name']%></h1>
+</div>
+<h5 class="text-primary">Just to be sure, your email is <%=@account_info['email']%></h5> 
+<br>
+<%= form_tag({:action => :upload}, :multipart => true) do %>
+    <%= file_field_tag 'file' %>
+    <%= submit_tag 'Upload' %>
+<% end %>
 
 <%=link_to 'Back to Directory', dropbox_listfiles_path,  class: "btn btn-success"%>
