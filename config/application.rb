@@ -16,7 +16,7 @@ module You
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     # config.time_zone = 'Central Time (US & Canada)'
     
-    config.force_ssl = true
+    #config.force_ssl = true
     #forces the app to use https
     
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
