@@ -1,4 +1,5 @@
 require 'net/sftp'
+require 'net/ssh'
 
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :update, :files, :destroy]
@@ -14,35 +15,83 @@ class UsersController < ApplicationController
     session[:user_id] = params[:id]
   end
 
+  def print
+    @user = User.find(session[:user_id])
+    @filename = sanitize_filename(params[:file])
+
+    Net::SSH.start('fraser.sfu.ca', @user.sfu_computingid, :password => @user.sfu_password, :non_interactive => true, :timeout => 20) do |ssh|
+      output = ssh.exec!("hostname")
+      puts output
+
+      Net::SSH.start('asb9838n-d10.csil.sfu.ca', @user.sfu_computingid, :password => @user.sfu_password, :non_interactive => true, :timeout => 20, :port => 24) do |ssh|
+        output = ssh.exec!("hostname")
+        puts output
+
+        ssh.exec "cd sfuhome && touch #{@filename}.copy"
+      end
+    end
+  end
+
+  def download
+    @user = User.find(session[:user_id])
+    @remotepath = "/ugrad1/" + @user.sfu_computingid + "/" + params[:file]
+    @localpath = "#{Rails.root}/public/" + params[:file]
+
+    Net::SFTP.start('fraser.sfu.ca', @user.sfu_computingid, :password => @user.sfu_password, :non_interactive => true, :timeout => 200) do |sftp|
+      sftp.download!(@remotepath, @localpath)
+    end
+
+    # TODO - check to make sure file downloaded properly
+
+    send_file @localpath, :x_sendfile => true
+    @filename = sanitize_filename(params[:file])
+    File.delete("#{Rails.root}/public/#{@filename}")
+  end
+
+  def sanitize_filename(filename)
+    filename.strip.tap do |name|
+      name.sub! /\A.*(\\|\/)/, ''
+      name.gsub! /[^\w\.\-]/, '_'
+    end
+  end
+
+  def remove
+    @user = User.find(session[:user_id])
+    @filename = sanitize_filename(params[:file])
+    @remotepath = "/ugrad1/" + @user.sfu_computingid + "/" + @filename
+    @localpath = "#{Rails.root}/public/" + params[:file]
+
+    Net::SFTP.start('fraser.sfu.ca', @user.sfu_computingid, :password => @user.sfu_password, :non_interactive => true, :timeout => 200) do |sftp|
+      sftp.remove!(@remotepath) 
+      redirect_to :action => 'files' and return
+    end
+  end
+
   def files
     @user = User.find(session[:user_id])
+
+    if @user.authenticated == nil
+      redirect_to :back and return
+    end
+
     @file_list = {}
 
     if params[:dir].nil?
       @directory = "./"
     else
-      @directory = params[:dir]
+      @directory = "/ugrad1/" + @user.sfu_computingid + "/" + params[:dir]
     end
 
-    begin
-      Net::SFTP.start('fraser.sfu.ca', @user.sfu_computingid, :password => @user.sfu_password, :non_interactive => true, :timeout => 10) do |sftp|
-        sftp.dir.foreach(@directory) do |entry|
-          if entry.directory?
-            @file_type = 'directory'
-          elsif entry.file?
-            @file_type = 'file'
-          end
-
-          @file_list[entry.name] = @file_type
+    Net::SFTP.start('fraser.sfu.ca', @user.sfu_computingid, :password => @user.sfu_password, :non_interactive => true, :timeout => 200) do |sftp|
+      sftp.dir.foreach(@directory) do |entry|
+        if entry.directory?
+          @file_type = 'directory'
+        elsif entry.file?
+          @file_type = 'file'
         end
+
+        @file_list[entry.name] = @file_type
       end
-
-      @user.authenticated = true
-      @user.save
-
-    rescue Net::SSH::Exception
-      @user.authenticated = false
-      redirect_to action: "auth", id: @user.id
     end
   end
   
@@ -82,6 +131,28 @@ class UsersController < ApplicationController
 
   def auth
     @user = User.find(params[:id])
+  end
+
+  def authenticate
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      begin
+        Net::SFTP.start('fraser.sfu.ca', @user.sfu_computingid, :password => @user.sfu_password, :non_interactive => true, :timeout => 200) do |sftp|
+        end
+
+        @user.authenticated = true
+        @user.save
+
+      rescue Net::SSH::Exception
+        @user.authenticated = false
+        flash[:danger] = "Authentication incorrect"
+        redirect_to action: "auth" and return
+      end
+      redirect_to action: "files", id: @user.id
+    else
+      flash[:danger] = "Unable to authenticate"
+      redirect_to action: "auth" and return
+    end
   end
   
   private
