@@ -17,7 +17,7 @@
       <% if file[1] == "directory" %>
         <p class="align-left">
           <% @dir = params[:dir] %>
-          <a href="/files?dir=<%= @dir %>/<%= file[0] %>"><%= file[0] %></a>
+          <a href="/list?dir=<%= @dir %>/<%= file[0] %>"><%= file[0] %></a>
         </p>
       <% else %>
         <p class="align-left"><%= file[0] %>

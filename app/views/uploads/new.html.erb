@@ -1,0 +1,9 @@
+<%= form_for @upload do |u| %>
+
+  <div class="form-group">
+    <%= u.label :file %>
+    <%= u.file_field :file, class: 'form-control'%>
+  </div>
+
+  <%= u.submit 'Upload', class: 'btn btn-primary' %>
+<% end %>
