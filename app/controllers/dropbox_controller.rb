@@ -84,14 +84,14 @@ class DropboxController < ApplicationController
         begin
             # Upload the POST'd file to Dropbox, keeping the same name
             @resp = client.put_file(params[:file].original_filename, params[:file].read)
-            render 'uploadsuccess'
+            render json: { message: "success" }, :status => 200
         rescue DropboxAuthError => e
             session.delete(:access_token)  # An auth error means the access token is probably bad
             logger.info "Dropbox auth error: #{e}"
-            render 'autherror'
+            render json: { message: "autherror" }, :status => 400
         rescue DropboxError => e
             logger.info "Dropbox API error: #{e}"
-            render 'dropboxerror'
+            render json: { message: "dropboxerror" }, :status => 400
         end
     end
 

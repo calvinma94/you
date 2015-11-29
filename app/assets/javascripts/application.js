@@ -11,7 +11,15 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
+//= require dropzone
 //= require bootstrap
-//= require turbolinks
 //= require_tree .
+//= require turbolinks
+
+
+Dropzone.autoDiscover = false
+$(document).on("ready page:load",Dropzone.discover)
+
+

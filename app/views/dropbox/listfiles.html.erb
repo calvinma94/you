@@ -1,3 +1,4 @@
+
 <div class="page-header"> 
   <h1 class="text-primary">Listing Files from <%=@account_info['display_name']%>'s Dropbox</h1>
 </div>
@@ -31,5 +32,38 @@
     
   </tbody>
   </table>
-  <%=link_to 'Upload a File', dropbox_main_path,  class: "btn btn-success"%>
+ 
+  <button type="button" class="btn btn-success" id="myUploadDBoxBtn">Upload a File</button>
   <%=link_to 'Logout', dropbox_dropsession_path, class: "btn btn-warning"%>
+  
+  
+  <!-- Modal -->
+  <div class="modal fade" id="myUploadDBoxModal" role="dialog">
+    <div class="modal-dialog">
+          
+      <!-- Modal content-->
+      <div class="modal-content">
+          <div class="modal-header" style="padding:35px 50px;">
+            <button type="button" class="close" data-dismiss="modal" onClick="history.go(0)">&times;</button>
+            <h4> Upload</h4>
+          </div>
+          <div class="modal-body" style="padding:45px 50px;">
+            <%= form_tag({:action => :upload}, :multipart => true, class: "dropzone needsclick dz-clickable") do %>
+            <div class="dz-message" data-dz-message><span></span><h2>Drop files here or click to upload.</h2></span></div>
+            <% end %>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-danger btn-default pull-right" data-dismiss="modal" onClick="history.go(0)"> Cancel</button>
+          </div>
+      </div>
+    </div>
+  </div> 
+  
+      <script>
+    $(document).ready(function(){
+        $("#myUploadDBoxBtn").click(function(){
+        $("#myUploadDBoxModal").modal();
+        });
+    });
+  </script>
+  

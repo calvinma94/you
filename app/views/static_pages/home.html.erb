@@ -15,8 +15,7 @@
                 <p>Browse and Transfer all of Your SFU U Drive Files, Remotely! </p>
             </div>
             <div id="signup_link">
-                <p><button type="button" class="btn btn-default btn-lg" id="myBtn">Sign up now!</button></p>
-                <p><%= link_to "Dropbox Directory", dropbox_listfiles_path, class:"btn btn-lg btn-primaryç"%></p>
+                <p><button type="button" class="btn btn-default btn-lg" id="mySignupBtn">Sign up now!</button></p>
             </div>
         </div>
         <div class="footer">
@@ -28,7 +27,7 @@
         </div>
 
         <!-- Modal -->
-        <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal fade" id="mySignupModal" role="dialog">
           <div class="modal-dialog">
           <%= form_for(@user) do |f| %>
             <!-- Modal content-->
@@ -67,15 +66,13 @@
           </div>
         </div> 
       </div>
-
-      <script>
-      $(document).ready(function(){
-          $("#myBtn").click(function(){
-          $("#myModal").modal();
-          });
-      });
-      </script>
-        
     </body>
 </html>
 
+<script>
+  $(document).ready(function(){
+        $("#mySignupBtn").click(function(){
+        $("#mySignupModal").modal();
+        });
+    });
+</script>

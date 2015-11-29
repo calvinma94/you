@@ -36,6 +36,10 @@ gem 'paperclip', '~> 4.3'
 # Use net-sftp
 gem 'net-sftp'
 
+# uploader
+gem 'dropzonejs-rails'
+gem 'jquery-turbolinks'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
