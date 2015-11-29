@@ -22,5 +22,37 @@
     <%end%>
   </tbody>
 </table>
+
+<button type="button" class="btn btn-success" id="myUploadGoogleBtn">Upload a File</button>
 <%=link_to "logout", google_logout_path, class: 'btn btn-warning'%>
-<%=link_to "upload",google_uploadform_path, class:'btn btn-primary'%>
+
+
+<!-- Modal -->
+  <div class="modal fade" id="myUploadGoogleModal" role="dialog">
+    <div class="modal-dialog">
+          
+      <!-- Modal content-->
+      <div class="modal-content">
+          <div class="modal-header" style="padding:35px 50px;">
+            <button type="button" class="close" data-dismiss="modal" onClick="history.go(0)">&times;</button>
+            <h4> Upload</h4>
+          </div>
+          <div class="modal-body" style="padding:45px 50px;">
+            <%= form_tag({:action => :upload}, :multipart => true, class: "dropzone needsclick dz-clickable") do %>
+            <div class="dz-message" data-dz-message><span></span><h2>Drop files here or click to upload.</h2></span></div>
+            <% end %>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-danger btn-default pull-right" data-dismiss="modal" onClick="history.go(0)"> Cancel</button>
+          </div>
+      </div>
+    </div>
+  </div> 
+  
+  <script>
+    $(document).ready(function(){
+        $("#myUploadGoogleBtn").click(function(){
+        $("#myUploadGoogleModal").modal();
+        });
+    });
+  </script>

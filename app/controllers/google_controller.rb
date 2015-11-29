@@ -28,7 +28,8 @@ Drive = Google::Apis::DriveV2 # Alias the module
     begin
       @aboutme=drive.get_about()
       drive.insert_file({title: params[:file].original_filename}, upload_source: params[:file].path ,content_type: params[:file].content_type)  
-      render 'uploadok'
+      #render 'uploadok'
+      render json: { message: "uploadok" }, :status => 200
     rescue Google::Apis::AuthorizationError
       session.delete(:credentials)
       params.delete(:code)
