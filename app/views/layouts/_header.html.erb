@@ -4,7 +4,7 @@
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %>
-          <li><%= link_to image_tag('folder.png') + " Files", files_path %></li>
+          <li><%= link_to image_tag('folder.png') + " Files", list_path %></li>
           <li ><%= link_to image_tag('clock.png') + " Recent", logout_path, method: "delete" %></li>
           <li ><%= link_to image_tag('drop.png') + " Dropbox", dropbox_listfiles_path %></li>
           <li><%= link_to "Users", users_path %></li>

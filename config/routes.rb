@@ -14,17 +14,17 @@ Rails.application.routes.draw do
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
 
-  get 'files' => 'users#files'
-  patch 'files' => 'users#files'
-
-  get 'download' => 'users#download'
-  get 'remove' => 'users#remove'
-  get 'print' => 'users#print'
-
-  match "/auth/:id/", to: "users#auth", via: [:get], as: :auth
-  match "/authenticate/:id", to: "users#authenticate", via: [:patch], as: :authenticate
+  # FILES routes
+  get 'list' => 'files#list'
+  patch 'list' => 'files#list'
+  get 'download' => 'files#download'
+  get 'remove' => 'files#remove'
+  get 'print' => 'files#print'
+  match "/auth/:id/", to: "files#auth", via: [:get], as: :auth
+  match "/authenticate/:id", to: "files#authenticate", via: [:patch], as: :authenticate
   
   resources :users
+  resources :uploads, only: [:new, :create, :index, :destroy]
   
   get  "dropbox/main"
   post "dropbox/upload"
