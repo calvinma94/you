@@ -12,13 +12,20 @@
     </section>
   </aside>
 
- <div class="col-md-8 file-list">
-   <% @file_list.each do |file| %>
-     <% if file[1] == "directory" %>
-       <p class="align-left"><a href="/files?dir=<%= file[0] %>"><%= file[0] %></a></p>
-     <% else %>
-       <p class="align-left"><%= file[0] %></p>
-     <% end  %>
-   <% end %>
- </div>
+  <div class="col-md-8 file-list">
+    <% @file_list.each do |file| %>
+      <% if file[1] == "directory" %>
+        <p class="align-left">
+          <% @dir = params[:dir] %>
+          <a href="/files?dir=<%= @dir %>/<%= file[0] %>"><%= file[0] %></a>
+        </p>
+      <% else %>
+        <p class="align-left"><%= file[0] %>
+        <a href="/download?file=<%= @dir %>/<%= file[0] %>">Download</a>
+        <a href="/remove?file=<%= @dir %>/<%= file[0] %>">Delete</a>
+        <a href="/print?file=<%= @dir %>/<%= file[0] %>">Print</a>
+        </p>
+      <% end  %>
+    <% end %>
+  </div>
 </div>

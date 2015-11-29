@@ -17,8 +17,12 @@ Rails.application.routes.draw do
   get 'files' => 'users#files'
   patch 'files' => 'users#files'
 
+  get 'download' => 'users#download'
+  get 'remove' => 'users#remove'
+  get 'print' => 'users#print'
+
   match "/auth/:id/", to: "users#auth", via: [:get], as: :auth
-  #match "/authenticate/:id", to: "users#authenticate", via: [:put], as: :authenticate
+  match "/authenticate/:id", to: "users#authenticate", via: [:patch], as: :authenticate
   
   resources :users
   
