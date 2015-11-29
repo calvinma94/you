@@ -14,7 +14,7 @@
         <p><%= link_to "Edit your profile", edit_user_path(current_user) =%></p>
         <p>
           <% if not @user.authenticated %>
-            <%= link_to "Connect to your U:Drive", controller: "users", action: "auth", id: @user.id %>
+            <%= link_to "Connect to your U:Drive", controller: "files", action: "auth", id: @user.id %>
           <% end %>
         </p>
 
