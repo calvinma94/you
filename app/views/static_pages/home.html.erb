@@ -1,15 +1,18 @@
 <html>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= stylesheet_link_tag "static_pages" %>
-    <head>
-        <title>You::Drive</title>
-    </head>
     <body>
-        <div class="header">
+        <div class="wrapper">
+        <div class="row">
+        <div class="head">
             <div id="title">
                 <h1>Welcome to YouDrive</h1>
             </div>
             
         </div>
+        </div>
+
+        <div class="row">
         <div class="middle">
             <div id="copy">
                 <p>Browse and Transfer all of Your SFU U Drive Files, Remotely! </p>
@@ -18,12 +21,17 @@
                 <p><%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %></p>
             </div>
         </div>
+        </div>
+        <div class="push"></div>
+        </div>
+        <div class="row">
         <div class="footer">
             <ul>
                 <li><%= link_to "About", about_path %></li>
                 <li><%= link_to "Help", help_path %></li>
                 <li><%= link_to "Contact", contact_path %></li>
             </ul>
+        </div>
         </div>
     </body>
 </html>

@@ -1,41 +1,52 @@
 <html>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= stylesheet_link_tag "static_pages" %>
     <head>
         <title>You::Drive</title>
     </head>
     <body>
-        <div class="header">
+        <div class="row">
+        <div class="head">
             <div id="title">
                 <h1>ABOUT U:</h1>
             </div>
         </div>
-        <div class="middle_auto">
-            <div class="static_container">
+        </div>
+
+        <div class="row">
+        <div class="middle_nopic">
+                <div class="col-md-4">
                 <h3>WHAT is YouDrive?</h3>
-                <p class="left">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed 
-                do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut 
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi 
-                ut aliquip ex ea commodo consequat.</p>
-                <br>
+                <p class="left">YouDrive is a file transfer service that allows SFU faculty and students to 
+                efforlessly download, upload and print files found on SFU U: - all accessible with only your
+                student login information. Additional support for DropBox and Google Drive is also available, 
+                allowing you to access all your files from one convenient location.</p>
+                </div>
+                <div class="col-md-4">
                 <h3>HOW do I get started with YouDrive?</h3>
-                <p class="left"> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed 
-                do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut 
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi 
-                ut aliquip ex ea commodo consequat.</p>
-                <br>
+                <p class="left"> Simply sign up <%= link_to "here", signup_path %> to get started and make your
+                life easer by having all of your files at your fingertips, wherever you go! The only
+                authentication you need is your SFU student ID email password, and you're set!</p>
+                </div>
+                <div class="col-md-4">
                 <h3>WHY was YouDrive created?</h3>
-                <p class="left">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed 
-                do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut 
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi 
-                ut aliquip ex ea commodo consequat."</p>
+                <p class="left">As students ourselves, we know how hectic the day-to-day life can be, between
+                classes, assignments, work and volunteer commitments. YouDrive aims to make the average student's 
+                life easier by placing all of your relevant files in one place, where you can then download or print
+                to SFU printing services. Life is hard enough without having to keep track of what files are where - 
+                this way, students and faculty can be confident that wherever they go, their files are no more than a click
+                away on any of their devices.</p>
+                </div>
             </div>
         </div>
+        <div class="row">
         <div class="footer">
             <ul>
                 <li><%= link_to "About", about_path %></li>
                 <li><%= link_to "Help", help_path %></li>
                 <li><%= link_to "Contact", contact_path %></li>
             </ul>
+        </div>
         </div>
     </body>
 </html>
