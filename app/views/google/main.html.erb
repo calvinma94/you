@@ -16,12 +16,13 @@
     <%lastmodified=DateTime.strptime(file.modified_date.to_s,'%Y-%m-%dT%H:%M:%S%z')%>
     <tr class="text-primary"><td><%=title%></td> 
     <td><%=lastmodified.strftime("%m/%d/%Y %H:%M")%></td>
-    <td><%=link_to 'Open/Download file', file.alternate_link, target: :_blank ,class: 'btn btn-primary'%></td>
+    <td><%=link_to 'Open/Download file', file.alternate_link, target: :_blank ,class: 'btn btn-default'%></td>
     </tr>
     
     <%end%>
   </tbody>
 </table>
+<<<<<<< HEAD
 
 <button type="button" class="btn btn-default" id="myUploadGoogleBtn">Upload a File</button>
 <%=link_to "logout", google_logout_path, class: 'btn btn-warning'%>
@@ -56,3 +57,7 @@
         });
     });
   </script>
+=======
+<%=link_to "logout", google_logout_path, class: 'btn btn-default'%>
+<%=link_to "upload",google_uploadform_path, class:'btn btn-default'%>
+>>>>>>> master

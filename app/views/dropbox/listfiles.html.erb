@@ -20,9 +20,9 @@
         <tr><td class="text-primary"><%=@cn%></td>
         <td class= "text-primary"><%=time.strftime("%m/%d/%Y %H:%M")%></td><td>
         <%if (child['is_dir']) then%>
-          <%=link_to "browse this directory", dropbox_listfiles_path(path: @cp), class: 'btn btn-primary'%>
+          <%=link_to "browse this directory", dropbox_listfiles_path(path: @cp), class: 'btn btn-default'%>
         <%else%>
-          <%=link_to "download this file", dropbox_download_path(path: @cp), class: 'btn btn-success'%>
+          <%=link_to "download this file", dropbox_download_path(path: @cp), class: 'btn btn-default'%>
         <%end%>
         </td></tr>
     <%end%>
@@ -32,9 +32,10 @@
     
   </tbody>
   </table>
+
  
   <button type="button" class="btn btn-default" id="myUploadDBoxBtn">Upload a File</button>
-  <%=link_to 'Logout', dropbox_dropsession_path, class: "btn btn-warning"%>
+  <%=link_to 'Logout', dropbox_dropsession_path, class: "btn btn-default"%>
   
   
   <!-- Modal -->
@@ -66,4 +67,4 @@
         });
     });
   </script>
-  
+
