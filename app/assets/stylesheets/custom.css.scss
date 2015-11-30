@@ -3,8 +3,10 @@
 
 /* universal */
 
-body {
-  padding-top: 60px;
+
+body { padding-top: 65px; }
+@media screen and (max-width: 768px) {
+    body { padding-top: 65px; }
 }
 
 section {
@@ -13,7 +15,11 @@ section {
 
 .navbar{
   background-image: asset-data-url("grid-noise.png");
-  min-width: 765px;
+
+}
+
+li.navlinks a:link{
+  color:#ffffff;  
 }
 
 textarea {
@@ -70,6 +76,19 @@ p {
 #logo:hover {
   color: #fff;
   text-decoration: none;
+}
+
+#navlink {
+  color: #fff;
+}
+
+#navlink:hover {
+  color: #000000;
+  text-decoration: none;
+}
+
+li.dropdown a:link{
+  color: #fff;
 }
 
 /* footer */
@@ -208,4 +227,8 @@ input {
     padding: 10px 0;
     border-bottom: 1px solid $gray-lighter;
   }
+}
+
+li a:link{
+  color:white;
 }

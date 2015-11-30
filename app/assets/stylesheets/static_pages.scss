@@ -5,7 +5,13 @@
 @import "bootstrap";
 
 html, body{
+    width:100%;
+    margin:0;
+}
 
+.custom-container{
+    width:100%;
+    margin: 0 auto;
 }
 
 .col-md-4{
@@ -91,7 +97,11 @@ div#copy{
 }
 
 .navbar a:hover{
-    color: black;
+    color: #ffffff;
+}
+
+li.navlinks a{
+  color:#ffffff;  
 }
 
 .static_container{

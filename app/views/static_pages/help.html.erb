@@ -5,36 +5,47 @@
         <title>You::Drive</title>
     </head>
     <body>
+        <div class="wrapper_nobackground">
+        <div class="row">
         <div class="head">
             <div id="title">
-                <h1>LET US HELP U:</h1>
+                <h1>HOW CAN WE HELP U:</h1>
             </div>
-            
         </div>
-        <div class="middle_auto">
-            <div class="static_container">
-                <p class="question">How can I print my files?</p>
-                <p class="left">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed 
-                do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut 
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi 
-                ut aliquip ex ea commodo consequat.</p>
-                <br>
-                <p class="question">I'm a faculty member, can I still use YouDrive?</q>
+        </div>
+
+        <div class="row">
+        <div class="middle_nopic">
+                <div class="col-md-4">
+                <h3>How can I print my files?</h3>
+                <p class="left">YouDrive is a file transfer service that allows SFU faculty and students to 
+                efforlessly download, upload and print files found on SFU U: - all accessible with only your
+                student login information. Additional support for DropBox and Google Drive is also available, 
+                allowing you to access all your files from one convenient location.</p>
+                </div>
+                <div class="col-md-4">
+                <h3>I'm a faculty member, can I still use YouDrive?</h3>
                 <p class="left"> Absolutely! If you have an SFU email address and login credentials,
                 then no matter who you are, you can browse your files on U:.</p>
-                <br>
-                <p class="question">Are my SFU/Dropbox/Google Drive credentials safe?</p>
+                </div>
+                <div class="col-md-4">
+                <h3>Are my SFU/Dropbox/Google Drive credentials safe?</h3>
                 <p class="left">Your SFU credentials are used only to identify you display your files, not for 
                 any other purpose (i.e. advertising etc). Your information will not be distributed to any 
                 third party.</p>
+                </div>
             </div>
         </div>
+        <div class="push"></div>
+        </div>
+        <div class="row">
         <div class="footer">
             <ul>
                 <li><%= link_to "About", about_path %></li>
                 <li><%= link_to "Help", help_path %></li>
                 <li><%= link_to "Contact", contact_path %></li>
             </ul>
+        </div>
         </div>
     </body>
 </html>
