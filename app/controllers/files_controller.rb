@@ -119,4 +119,10 @@ class FilesController < ApplicationController
       redirect_to login_url
     end
   end
+
+  def user_params
+    params.require(:user).permit(:name, :email, :password,
+                                 :password_confirmation, :sfu_computingid, :sfu_password, 
+                                 :authenticated)
+  end
 end
