@@ -1,0 +1,24 @@
+<h1>Files</h1>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<% provide(:title, @user.name) %>
+
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h1>
+        <%= gravatar_for @user %>
+        <%= @user.name.capitalize! %>
+      </h1>
+    </section>
+  </aside>
+
+ <div class="col-md-8 file-list">
+   <% @file_list.each do |file| %>
+     <% if file[1] == "directory" %>
+       <p class="align-left"><a href="/files?dir=<%= file[0] %>"><%= file[0] %></a></p>
+     <% else %>
+       <p class="align-left"><%= file[0] %></p>
+     <% end  %>
+   <% end %>
+ </div>
+</div>

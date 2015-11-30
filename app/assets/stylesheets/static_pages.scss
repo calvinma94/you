@@ -4,13 +4,23 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-div.header{
+html, body{
+
+}
+
+.col-md-4{
+    background-color:white;
+}
+
+
+div.head{
     background-image: asset-data-url("grid-noise.png");
     color: #ffffff;
-    text-align: center;
-    width: 100%;
+    text-align: center; 
     height: 250px;
     position: relative;
+    margin:0px;
+    padding:0px;
 }
             
 div.middle{
@@ -24,6 +34,12 @@ div.middle_auto{
     background-image: asset-data-url("school-tile4.png");
     width:100%;
     height: 730px;
+    position:relative;  
+}
+
+div.middle_nopic{
+    width:100%;
+    height: auto;
     position:relative;  
 }
 
