@@ -5,6 +5,7 @@ class FilesController < ApplicationController
   before_action :logged_in_user, only: [:list, :print, :download, :remove, :auth]
 
   def list
+    @upload = Upload.new
     @user = User.find(session[:user_id])
 
     if @user.authenticated == nil
@@ -38,7 +39,7 @@ class FilesController < ApplicationController
     @localpath = "#{Rails.root}/public/" + params[:file]
 
     Net::SFTP.start('fraser.sfu.ca', @user.sfu_computingid, :password => @user.sfu_password, :non_interactive => true, :timeout => 200) do |sftp|
-      sftp.download!(@remotepath, @localpath)
+      sftp.download(@remotepath, @localpath)
     end
 
     # TODO - check to make sure file downloaded properly
