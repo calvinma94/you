@@ -38,14 +38,15 @@ class FilesController < ApplicationController
     @localpath = "#{Rails.root}/public/" + params[:file]
 
     Net::SFTP.start('fraser.sfu.ca', @user.sfu_computingid, :password => @user.sfu_password, :non_interactive => true, :timeout => 200) do |sftp|
-      sftp.download(@remotepath, @localpath)
+      sftp.download!(@remotepath, @localpath)
     end
 
     # TODO - check to make sure file downloaded properly
 
-    send_file @localpath, :x_sendfile => true
-    @filename = sanitize_filename(params[:file])
-    File.delete("#{Rails.root}/public/#{@filename}")
+    send_file @localpath, :x_sendfile => true and return
+    #@filename = sanitize_filename(params[:file])
+    #File.delete("#{Rails.root}/public/#{@filename}")
+    #redirect_to :action => 'list'
   end
 
   def remove
