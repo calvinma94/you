@@ -18,7 +18,8 @@ class UploadsController < ApplicationController
 
       @upload.destroy
       flash[:success] = "File uploaded!"
-      redirect_to :controller => 'files', :action => 'list'
+      render json: { message: "uploadok" },:status => 200
+      #redirect_to :controller => 'files', :action => 'list'
     else
       render 'new'
     end

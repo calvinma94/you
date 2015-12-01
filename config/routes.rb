@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   get 'print' => 'files#print'
   match "/auth/:id/", to: "files#auth", via: [:get], as: :auth
   match "/authenticate/:id", to: "files#authenticate", via: [:patch], as: :authenticate
-  
+  post "uploads/new"
   resources :users
   resources :uploads, only: [:new, :create, :index, :destroy]
   
