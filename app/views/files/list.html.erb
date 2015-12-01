@@ -44,7 +44,7 @@
         </div>
         <div class="modal-body" style="padding:45px 50px;">
           <%= form_for @upload, html: {multipart: true, class: "dropzone needsclick dz-clickable", id: "file-dropzone"} do |u| %>
-            <div class="dz-message" data-dz-message><span></span><h2>Drop files here or click to upload.</h2></span></div>
+            <div class="dz-message" data-dz-message><span><h2>Drop files here or click to upload.</h2></span></div>
           <% end %>
          </div>
          <div class="modal-footer">
