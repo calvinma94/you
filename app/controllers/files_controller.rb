@@ -42,8 +42,6 @@ class FilesController < ApplicationController
       sftp.download!(@remotepath, @localpath)
     end
 
-    # TODO - check to make sure file downloaded properly
-
     send_file @localpath, :x_sendfile => true and return
     #@filename = sanitize_filename(params[:file])
     #File.delete("#{Rails.root}/public/#{@filename}")
@@ -74,7 +72,7 @@ class FilesController < ApplicationController
         output = ssh.exec!("hostname")
         puts output
 
-        ssh.exec "cd sfuhome && touch #{@filename}.copy"
+        ssh.exec "cd sfuhome && lpr -P Lab_Monochrome #{@filename}"
       end
     end
   end
