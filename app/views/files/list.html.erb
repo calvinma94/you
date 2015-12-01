@@ -1,31 +1,85 @@
-<h1>Files</h1>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<% provide(:title, @user.name) %>
+<div class="page-header"> 
+  <h1 class="text-primary">Listing Files from SFU U:</h1>
+</div>
 
-<div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.name.capitalize! %>
-      </h1>
-    </section>
-  </aside>
-
+<table class="table">
+  <thead>
+    <tr>
+      <th class="text-primary">File Name</th>
+      <th class="text-primary">Browse/Download</th>
+      <th colspan="0"></th>
+    </tr>
+  </thead>
+  <tbody>
+    
   <div class="col-md-8 file-list">
     <% @file_list.each do |file| %>
       <% if file[1] == "directory" %>
         <p class="align-left">
           <% @dir = params[:dir] %>
-          <a href="/list?dir=<%= @dir %>/<%= file[0] %>"><%= file[0] %></a>
+          <tr><td><a href="/list?dir=<%= @dir %>/<%= file[0] %>"><%= file[0] %></a></td>
+          <td class="btn btn-default"><a href="/list?dir=<%= @dir %>/<%= file[0] %>">browse this directory</a></td></tr>
         </p>
-      <% else %>
-        <p class="align-left"><%= file[0] %>
-        <a href="/download?file=<%= @dir %>/<%= file[0] %>">Download</a>
-        <a href="/remove?file=<%= @dir %>/<%= file[0] %>">Delete</a>
-        <a href="/print?file=<%= @dir %>/<%= file[0] %>">Print</a>
-        </p>
+      <% else %> 
+        <p class="align-left"><tr><td><%= file[0] %></td>
+        <td class="btn btn-default"><a href="/download?file=<%= @dir %>/<%= file[0] %>">Download</a></td>
+        <td class="btn btn-default"><a href="/remove?file=<%= @dir %>/<%= file[0] %>">Delete</a></td>
+        <td class="btn btn-default"><a href="/print?file=<%= @dir %>/<%= file[0] %>">Print</a></td></p>
       <% end  %>
+  
     <% end %>
   </div>
 </div>
+
+<button type="button" class="btn btn-default" id="myUploadSftpBtn">Upload a File</button>
+
+ 
+</tbody>
+</table>
+
+  <div class="footer">
+    <ul>
+        <li><%= link_to "About", about_path %></li>
+        <li><%= link_to "Help", help_path %></li>
+        <li><%= link_to "Contact", contact_path %></li>
+    </ul>
+ </div>  
+
+
+<!-- Modal -->
+<div class="modal fade" id="myUploadSftpModal" role="dialog">
+  <div class="modal-dialog">
+          
+     <!-- Modal content-->
+    <div class="modal-content">
+        <div class="modal-header" style="padding:35px 50px;">
+          <button type="button" class="close" data-dismiss="modal" onClick="history.go(0)">&times;</button>
+          <h4> Upload</h4>
+        </div>
+        <div class="modal-body" style="padding:45px 50px;">
+          <%= form_for @upload, html: {multipart: true, class: "dropzone needsclick dz-clickable", id: "file-dropzone"} do |u| %>
+            <div class="dz-message" data-dz-message><span><h2>Drop files here or click to upload.</h2></span></div>
+          <% end %>
+         </div>
+         <div class="modal-footer">
+           <button type="submit" class="btn btn-danger btn-default pull-right" data-dismiss="modal" onClick="history.go(0)"> Close</button>
+         </div>
+    </div>
+  </div>
+</div> 
+  
+<script>
+    $(document).ready(function(){
+        $("#myUploadSftpBtn").click(function(){
+        $("#myUploadSftpModal").modal();
+        });
+    });
+
+    $(document).ready(function(){
+        $("#file-dropzone").dropzone({
+            paramName: "upload[file]",
+        }); 
+    });
+</script>

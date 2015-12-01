@@ -1,3 +1,4 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <div class="page-header"> 
   <h1 class="text-primary">Listing Files from <%=@account_info['display_name']%>'s Dropbox</h1>
@@ -50,11 +51,11 @@
           </div>
           <div class="modal-body" style="padding:45px 50px;">
             <%= form_tag({:action => :upload}, :multipart => true, class: "dropzone needsclick dz-clickable") do %>
-            <div class="dz-message" data-dz-message><span></span><h2>Drop files here or click to upload.</h2></span></div>
+            <div class="dz-message" data-dz-message><span><h2>Drop files here or click to upload.</h2></span></div>
             <% end %>
           </div>
           <div class="modal-footer">
-            <button type="submit" class="btn btn-danger btn-default pull-right" data-dismiss="modal" onClick="history.go(0)"> Cancel</button>
+            <button type="submit" class="btn btn-danger btn-default pull-right" data-dismiss="modal" onClick="history.go(0)"> Close</button>
           </div>
       </div>
     </div>
