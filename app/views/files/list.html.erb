@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th class="text-primary">File Name</th>
+      <th class="text-primary">Browse/Download</th>
       <th colspan="0"></th>
     </tr>
   </thead>
@@ -16,16 +17,18 @@
       <% if file[1] == "directory" %>
         <p class="align-left">
           <% @dir = params[:dir] %>
-          <tr><td><a href="/list?dir=<%= @dir %>/<%= file[0] %>"><%= file[0] %></a></td></tr>
+          <tr><td><a href="/list?dir=<%= @dir %>/<%= file[0] %>"><%= file[0] %></a></td>
+          <td class="btn btn-default"><a href="/list?dir=<%= @dir %>/<%= file[0] %>">browse this directory</a></td></tr>
         </p>
-      <% else %>
+      <% else %> 
         <p class="align-left"><tr><td><%= file[0] %></td>
-        <td><a href="/download?file=<%= @dir %>/<%= file[0] %>">Download</a></td>
-        <td><a href="/remove?file=<%= @dir %>/<%= file[0] %>">Delete</a></td>
-        <td><a href="/print?file=<%= @dir %>/<%= file[0] %>">Print</a></td></tr>
-        </p>
+        <td class="btn btn-default"><a href="/download?file=<%= @dir %>/<%= file[0] %>">Download</a></td>
+        <td class="btn btn-default"><a href="/remove?file=<%= @dir %>/<%= file[0] %>">Delete</a></td>
+        <td class="btn btn-default"><a href="/print?file=<%= @dir %>/<%= file[0] %>">Print</a></td></p>
       <% end  %>
+  
     <% end %>
   </div>
 </tbody>
 </table>
+
