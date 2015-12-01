@@ -243,3 +243,14 @@ html .btn-default:hover {
   color: white;
 }
 
+#login_link a {
+  color: white;
+
+  &:hover {
+    color: black;
+  }
+}
+
+li.dropdown.open #navlink {
+  color: black;
+}
