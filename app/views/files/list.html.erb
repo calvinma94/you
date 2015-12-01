@@ -1,42 +1,40 @@
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <div class="page-header"> 
   <h1 class="text-primary">Listing Files from SFU U:</h1>
 </div>
 
-<table class="table">
+<button type="button" class="btn btn-default" id="myUploadSftpBtn">Upload a File</button> 
+
+<table id="file__list" class="table">
   <thead>
     <tr>
       <th class="text-primary">File Name</th>
       <th class="text-primary">Browse/Download</th>
-      <th colspan="0"></th>
     </tr>
   </thead>
   <tbody>
-    
-  <div class="col-md-8 file-list">
+  
     <% @file_list.each do |file| %>
       <% if file[1] == "directory" %>
-        <p class="align-left">
-          <% @dir = params[:dir] %>
-          <tr><td><a href="/list?dir=<%= @dir %>/<%= file[0] %>"><%= file[0] %></a></td>
-          <td class="btn btn-default"><a href="/list?dir=<%= @dir %>/<%= file[0] %>">browse this directory</a></td></tr>
-        </p>
+        <% @dir = params[:dir] %>
+        <tr>
+          <td class="col__1">
+            <a href="/list?dir=<%= @dir %>/<%= file[0] %>"><%= file[0] %></a>
+          </td>
+          <td class="col__2">
+            <a class="btn btn-default" href="/list?dir=<%= @dir %>/<%= file[0] %>">browse this directory</a>
+          </td>
+        </tr>
       <% else %> 
-        <p class="align-left"><tr><td><%= file[0] %></td>
-        <td class="btn btn-default"><a href="/download?file=<%= @dir %>/<%= file[0] %>">Download</a></td>
-        <td class="btn btn-default"><a href="/remove?file=<%= @dir %>/<%= file[0] %>">Delete</a></td>
-        <td class="btn btn-default"><a href="/print?file=<%= @dir %>/<%= file[0] %>">Print</a></td></p>
+        <tr>
+          <td class="col__1"><%= file[0] %></td>
+          <td class="col__2">
+            <a class="btn btn-default" href="/download?file=<%= @dir %>/<%= file[0] %>">Download</a>
+            <a class="btn btn-default" href="/remove?file=<%= @dir %>/<%= file[0] %>">Delete</a>
+            <a class="btn btn-default" href="/print?file=<%= @dir %>/<%= file[0] %>">Print</a>
+          </td>
       <% end  %>
-  
     <% end %>
-  </div>
-</div>
-
-<button type="button" class="btn btn-default" id="myUploadSftpBtn">Upload a File</button>
-
- 
-</tbody>
+  </tbody>
 </table>
 
   <div class="footer">
@@ -45,7 +43,7 @@
         <li><%= link_to "Help", help_path %></li>
         <li><%= link_to "Contact", contact_path %></li>
     </ul>
- </div>  
+  </div>  
 
 
 <!-- Modal -->
