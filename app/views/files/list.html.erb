@@ -35,6 +35,19 @@
 
 <button type="button" class="btn btn-default" id="myUploadSftpBtn">Upload a File</button>
 
+ 
+</tbody>
+</table>
+
+  <div class="footer">
+    <ul>
+        <li><%= link_to "About", about_path %></li>
+        <li><%= link_to "Help", help_path %></li>
+        <li><%= link_to "Contact", contact_path %></li>
+    </ul>
+ </div>  
+
+
 <!-- Modal -->
 <div class="modal fade" id="myUploadSftpModal" role="dialog">
   <div class="modal-dialog">
@@ -69,15 +82,4 @@
             paramName: "upload[file]",
         }); 
     });
-</script> 
-</tbody>
-</table>
-
-  <div class="footer">
-    <ul>
-        <li><%= link_to "About", about_path %></li>
-        <li><%= link_to "Help", help_path %></li>
-        <li><%= link_to "Contact", contact_path %></li>
-    </ul>
- </div>  
-
+</script>
