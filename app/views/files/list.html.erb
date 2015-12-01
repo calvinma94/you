@@ -1,31 +1,31 @@
-<h1>Files</h1>
+<div class="page-header"> 
+  <h1 class="text-primary">Listing Files from <%= @user.name.capitalize! %>'s SFU U:</h1>
+</div>
 
-<% provide(:title, @user.name) %>
-
-<div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.name.capitalize! %>
-      </h1>
-    </section>
-  </aside>
-
+<table class="table">
+  <thead>
+    <tr>
+      <th class="text-primary">File Name</th>
+      <th colspan="0"></th>
+    </tr>
+  </thead>
+  <tbody>
+    
   <div class="col-md-8 file-list">
     <% @file_list.each do |file| %>
       <% if file[1] == "directory" %>
         <p class="align-left">
           <% @dir = params[:dir] %>
-          <a href="/list?dir=<%= @dir %>/<%= file[0] %>"><%= file[0] %></a>
+          <tr><td><a href="/list?dir=<%= @dir %>/<%= file[0] %>"><%= file[0] %></a></td></tr>
         </p>
       <% else %>
-        <p class="align-left"><%= file[0] %>
-        <a href="/download?file=<%= @dir %>/<%= file[0] %>">Download</a>
-        <a href="/remove?file=<%= @dir %>/<%= file[0] %>">Delete</a>
-        <a href="/print?file=<%= @dir %>/<%= file[0] %>">Print</a>
+        <p class="align-left"><tr><td><%= file[0] %></td>
+        <td><a href="/download?file=<%= @dir %>/<%= file[0] %>">Download</a></td>
+        <td><a href="/remove?file=<%= @dir %>/<%= file[0] %>">Delete</a></td>
+        <td><a href="/print?file=<%= @dir %>/<%= file[0] %>">Print</a></td></tr>
         </p>
       <% end  %>
     <% end %>
   </div>
-</div>
+</tbody>
+</table>
