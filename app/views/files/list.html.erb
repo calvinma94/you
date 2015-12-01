@@ -29,3 +29,41 @@
     <% end %>
   </div>
 </div>
+
+<button type="button" class="btn btn-default" id="myUploadSftpBtn">Upload a File</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myUploadSftpModal" role="dialog">
+  <div class="modal-dialog">
+          
+     <!-- Modal content-->
+    <div class="modal-content">
+        <div class="modal-header" style="padding:35px 50px;">
+          <button type="button" class="close" data-dismiss="modal" onClick="history.go(0)">&times;</button>
+          <h4> Upload</h4>
+        </div>
+        <div class="modal-body" style="padding:45px 50px;">
+          <%= form_for @upload, html: {multipart: true, class: "dropzone needsclick dz-clickable", id: "file-dropzone"} do |u| %>
+            <div class="dz-message" data-dz-message><span></span><h2>Drop files here or click to upload.</h2></span></div>
+          <% end %>
+         </div>
+         <div class="modal-footer">
+           <button type="submit" class="btn btn-danger btn-default pull-right" data-dismiss="modal" onClick="history.go(0)"> Cancel</button>
+         </div>
+    </div>
+  </div>
+</div> 
+  
+<script>
+    $(document).ready(function(){
+        $("#myUploadSftpBtn").click(function(){
+        $("#myUploadSftpModal").modal();
+        });
+    });
+
+    $(document).ready(function(){
+        $("#file-dropzone").dropzone({
+            paramName: "upload[file]",
+        }); 
+    });
+</script> 
